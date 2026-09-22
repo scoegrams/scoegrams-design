@@ -1,25 +1,31 @@
-# CODING AGENTS: READ THIS FIRST
+# Gouache Kit
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+![Gouache Kit preview](docs/preview.png)
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+A small set of painted UI elements — buttons, fields, tags, tabs, a hoverable node graph, a chat composer, live search, and a split-pane markdown editor — built on a paper-grain visual system: one hairline of ink, one flat field of colour, one layer of grain.
 
-## What you should do — IMPORTANT
+Originally mocked up in [Claude Design](https://claude.ai/design) and implemented here as a real **Vite + React + TypeScript** app.
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+## Run it
 
-**Read `project/Gouache Kit.dc.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+```bash
+npm install
+npm run dev
+```
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+## Build
 
-## About the design files
+```bash
+npm run build
+```
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+## Structure
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+- `src/components/` — the reusable kit: `Button`, `TextField`/`TextAreaField`, `Toggle`, `Checkbox`, `Tag`, `Avatar`, `Tabs`, `Plate`, `CodeBlock`, `Dialog`, `NodeGraph`, `ChatPanel`, `SearchBar`, `MarkdownEditor`, `BlogCard`
+- `src/App.tsx` — the showcase page composing all of the above
+- `src/theme.ts`, `src/styles/global.css` — shared color/type tokens and the paper-grain CSS system
+- `public/` — the paper texture and illustration assets
 
-## Bundle contents
+## Original design bundle
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Web React Elements Kit` project files (HTML prototypes, assets, components)
+`project/` and `chats/` hold the original Claude Design handoff (the `.dc.html` prototype and the design conversation that produced it) — kept for reference, not used at runtime.
