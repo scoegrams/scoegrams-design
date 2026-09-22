@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  body { margin: 0; background: #F4F2EB; color: #241C14; font-family: 'Newsreader', Georgia, serif; font-size: 17px; -webkit-font-smoothing: antialiased; }
+  a { color: #B8461E; text-decoration: none; border-bottom: 1px solid rgba(184,70,30,0.45); }
+  a:hover { color: #2A2018; border-bottom-color: rgba(42,32,24,0.5); }
+  ::selection { background: #CBD5BE; }
+  input::placeholder, textarea::placeholder { color: #7E7162; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background-color: #F4F2EB; background-image: url('paper-light.png'); background-size: 620px auto;">
+
+  <div style="position: fixed; inset: 0; pointer-events: none; z-index: 40; background-image: url('paper-light.png'); background-size: 520px auto; opacity: 0.5; mix-blend-mode: multiply;"></div>
+
+  <div style="max-width: 940px; margin: 0 auto; padding: 0 56px 140px;">
+
+    <!-- NAV -->
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 32px; padding: 30px 0 14px; border-bottom: 1px solid rgba(42,32,24,0.28);">
+      <span style="font-family: 'Chelsea Market', cursive; font-size: 19px; letter-spacing: 0;">Gouache</span>
+      <div style="display: flex; gap: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #6A5C4C;">
+        <span style="color: #2A2018; border-bottom: 1px solid #B8461E; padding-bottom: 2px;">Elements</span>
+        <span>Palette</span>
+        <span>Paper</span>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <div style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; padding: 76px 0 28px;">
+      <div>
+        <h1 style="margin: 0; font-family: 'Chelsea Market', cursive; font-size: 58px; font-weight: 400; line-height: 1.14; letter-spacing: 0; text-wrap: balance;">A small set of painted elements.</h1>
+        <p style="margin: 22px 0 0; font-size: 18px; line-height: 1.6; font-weight: 400; color: #3B3128; max-width: 46ch; text-wrap: pretty;">One hairline of ink, one flat field of colour, one layer of grain. Nothing raised, nothing outlined twice. Code sits in the same paper as everything else.</p>
+      </div>
+      <div style="aspect-ratio: 1 / 1; background-image: url('hero-leopard.png'); background-size: cover; background-position: center;"></div>
+    </div>
+
+    <!-- 01 BUTTONS -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">01<br/>Buttons</div>
+      <div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px;">
+          <button onClick="{{ bump }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; border-radius: 10px; cursor: pointer; border: none; color: #F6F0E4; background-color: #C9532A;" style-hover="background-color: #B8461E;">Primary</button>
+          <button style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; border-radius: 10px; cursor: pointer; color: #2A2018; background: transparent; border: 1px solid rgba(42,32,24,0.4);" style-hover="border-color: #2A2018;">Secondary</button>
+          <button style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; border-radius: 10px; cursor: pointer; border: none; color: #F6F0E4; background-color: #3A6A96;" style-hover="background-color: #2F5A81;">Cobalt</button>
+          <button style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 2px; cursor: pointer; border: none; background: transparent; color: #2A2018; border-bottom: 1px solid rgba(42,32,24,0.35);" style-hover="border-bottom-color: #B8461E; color: #B8461E;">Quiet</button>
+          <button disabled="" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; border-radius: 10px; color: #7E7162; background: transparent; border: 1px solid rgba(42,32,24,0.16);">Disabled</button>
+        </div>
+        <div style="margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7E7162;">pressed {{ clicks }}×</div>
+      </div>
+    </div>
+
+    <!-- 02 FIELDS -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">02<br/>Fields</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px;">
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <label style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.13em; text-transform: uppercase; color: #6A5C4C;">Title</label>
+          <input placeholder="Leopard, in a chair" style="font-family: 'Newsreader', serif; font-size: 18px; font-weight: 400; padding: 6px 0 9px; color: #2A2018; background: transparent; border: none; border-bottom: 1px solid rgba(42,32,24,0.4); outline: none;" style-focus="border-bottom-color: #C9532A;"/>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <label style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.13em; text-transform: uppercase; color: #6A5C4C;">Note</label>
+          <textarea rows="2" placeholder="More grain, fewer straight lines." style="font-family: 'Newsreader', serif; font-size: 18px; font-weight: 400; line-height: 1.5; padding: 6px 0 9px; resize: vertical; color: #2A2018; background: transparent; border: none; border-bottom: 1px solid rgba(42,32,24,0.4); outline: none;" style-focus="border-bottom-color: #C9532A;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 CONTROLS -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">03<br/>Controls</div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 44px;">
+        <div onClick="{{ toggleGrain }}" style="display: flex; align-items: center; gap: 13px; cursor: pointer;">
+          <div style="width: 40px; height: 20px; padding: 2px; border: 1px solid rgba(42,32,24,0.4); display: flex; align-items: center; justify-content: {{ switchAlign }};">
+            <div style="width: 16px; height: 16px; background-color: {{ switchDot }};"></div>
+          </div>
+          <span style="font-size: 17px; font-weight: 400;">Paper grain</span>
+        </div>
+        <div onClick="{{ toggleWhiskers }}" style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <div style="width: 18px; height: 18px; border: 1px solid rgba(42,32,24,0.45); background-color: {{ checkBg }};"></div>
+          <span style="font-size: 17px; font-weight: 400;">Show whiskers</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; color: #7E7162;">
+          <div style="width: 18px; height: 18px; border: 1px solid rgba(36,28,20,0.3);"></div>
+          <span style="font-size: 17px; font-weight: 400;">Locked</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 TAGS + AVATARS -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">04<br/>Marks</div>
+      <div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase; padding: 5px 10px; color: #F6F0E4; background-color: #C9532A;">gouache</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase; padding: 5px 10px; color: #F6F0E4; background-color: #3A6A96;">cobalt</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase; padding: 5px 10px; color: #F1EDE1; background-color: #33482F;">pine</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase; padding: 5px 10px; border: 1px solid rgba(42,32,24,0.35); color: #6A5C4C;">draft</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <div style="width: 34px; height: 34px; border-radius: 50%; color: #F1EDE1; background-color: #33482F; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px;">MF</div>
+          <div style="width: 34px; height: 34px; border-radius: 50%; background-color: #3A6A96; color: #F6F0E4; display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px;">KL</div>
+          <div style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(42,32,24,0.35); display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #6A5C4C;">+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 TABS + CARDS -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">05<br/>Plates</div>
+      <div>
+        <div style="display: flex; gap: 26px; border-bottom: 1px solid rgba(36,28,20,0.3); padding-bottom: 10px;">
+          <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="3">
+            <button onClick="{{ tab.select }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.13em; text-transform: uppercase; padding: 0 0 10px; margin-bottom: -11px; cursor: pointer; background: transparent; border: none; border-bottom: 1px solid {{ tab.rule }}; color: {{ tab.fg }};">{{ tab.label }}</button>
+          </sc-for>
+        </div>
+        <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+          <sc-for list="{{ cards }}" as="card" hint-placeholder-count="3">
+            <div>
+              <div style="aspect-ratio: 4 / 5; background-color: {{ card.swatch }}; background-image: {{ card.fill }}; background-size: cover; background-position: {{ card.pos }}; background-blend-mode: {{ card.blend }}; filter: {{ card.filter }};"></div>
+              <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: #7E7162;">{{ card.meta }}</div>
+              <div style="margin-top: 6px; font-family: 'Chelsea Market', cursive; font-size: 20px; line-height: 1.25;">{{ card.title }}</div>
+              <p style="margin: 5px 0 0; font-size: 16px; line-height: 1.55; font-weight: 400; color: #3B3128; text-wrap: pretty;">{{ card.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 CODE -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">06<br/>Code</div>
+      <div>
+        <div style="background-color: #E9E6DB; padding: 26px 28px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.95; color: #241C14;">
+          <div><span style="color: #B8461E;">$</span> npm i gouache-kit</div>
+          <div style="color: #7E7162;"># one texture file, nine elements</div>
+          <div style="height: 20px;"></div>
+          <div><span style="color: #3A6A96;">import</span> { Button, Plate } <span style="color: #3A6A96;">from</span> <span style="color: #B8461E;">'gouache-kit'</span></div>
+          <div>&lt;Button tone=<span style="color: #B8461E;">"gouache"</span>&gt;Ship it&lt;/Button&gt;</div>
+        </div>
+        <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7E7162;">Inverted variant available for dark plates.</div>
+      </div>
+    </div>
+
+    <!-- 07 DIALOG -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">07<br/>Dialog</div>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap;">
+        <button onClick="{{ openModal }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; border-radius: 10px; cursor: pointer; color: #2A2018; background: transparent; border: 1px solid rgba(42,32,24,0.4);" style-hover="border-color: #2A2018;">Open dialog</button>
+        <span style="font-size: 16px; font-weight: 400; color: #3B3128;">Floated over a wash of the same paper.</span>
+      </div>
+    </div>
+
+    <!-- PAPER NOTE -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0 0; border-top: 1px solid rgba(36,28,20,0.3);">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">08<br/>Paper</div>
+      <p style="margin: 0 0 0; font-size: 17px; line-height: 1.65; font-weight: 400; color: #3B3128; max-width: 60ch; text-wrap: pretty;">Every surface reads its texture from one file, <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px;">paper-light.png</span> — a seamless scan tiled across the page, with a second copy fixed over the viewport and multiplied at 50% so the fibre carries over the paint as well as the paper. The painted fields stay flat, which keeps their colour exactly where it was mixed. Swap that one file and the whole set changes material.</p>
+    </div>
+
+    <!-- 09 NODES -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0 0; border-top: 1px solid rgba(36,28,20,0.3); margin-top: 42px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">09<br/>Nodes</div>
+      <div>
+        <div style="position: relative; height: 360px; background-color: #EFECE3; overflow: hidden;">
+          <svg viewBox="0 0 700 360" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+            <sc-for list="{{ edges }}" as="e" hint-placeholder-count="11">
+              <line x1="{{ e.x1 }}" y1="{{ e.y1 }}" x2="{{ e.x2 }}" y2="{{ e.y2 }}" stroke="{{ e.stroke }}" stroke-width="{{ e.width }}" stroke-linecap="round"></line>
+            </sc-for>
+          </svg>
+          <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="10">
+            <div onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="position: absolute; left: {{ n.left }}; top: {{ n.top }}; width: {{ n.size }}; height: {{ n.size }}; margin-left: {{ n.offset }}; margin-top: {{ n.offset }}; border-radius: 50%; cursor: pointer; background-color: {{ n.fill }}; box-shadow: {{ n.ring }}; transition: background-color .14s, box-shadow .14s;"></div>
+          </sc-for>
+          <div style="position: absolute; left: 20px; bottom: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: {{ readoutColor }};">{{ readout }}</div>
+        </div>
+        <div style="margin-top: 14px; display: flex; gap: 26px; flex-wrap: wrap; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6A5C4C;">
+          <span>hover a node to trace its edges</span>
+          <span style="color: #7E7162;">{{ edgeCount }} edges · {{ nodeCount }} nodes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 CHAT -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0 0; border-top: 1px solid rgba(36,28,20,0.3); margin-top: 42px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">10<br/>Chat</div>
+      <div>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+          <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="2">
+            <div style="display: flex; justify-content: {{ m.align }};">
+              <div style="max-width: 78%; padding: 11px 16px; border-radius: {{ m.radius }}; background-color: {{ m.bg }}; color: {{ m.fg }};">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: {{ m.meta }}; margin-bottom: 4px;">{{ m.who }}</div>
+                <div style="font-size: 17px; line-height: 1.55;">{{ m.text }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background-color: #EFECE3; border-radius: 22px; padding: 16px 18px 12px;">
+          <textarea rows="2" value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onKey }}" placeholder="Describe what you want to make…" style="width: 100%; box-sizing: border-box; font-family: 'Newsreader', serif; font-size: 20px; font-weight: 400; line-height: 1.45; color: #241C14; background: transparent; border: none; outline: none; resize: none; padding: 0;"></textarea>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 12px;">
+            <button style="width: 32px; height: 32px; border-radius: 999px; cursor: pointer; background: transparent; border: 1px solid rgba(36,28,20,0.3); color: #3B3128; font-family: 'IBM Plex Mono', monospace; font-size: 16px; line-height: 1;" style-hover="border-color: #241C14;">+</button>
+            <div style="display: flex; align-items: center; gap: 18px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #3B3128;">Gouache 1 <span style="color: #7E7162;">medium</span></span>
+              <button onClick="{{ send }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 20px; border-radius: 999px; cursor: pointer; border: none; color: #F4F2EB; background-color: {{ sendBg }};">Send</button>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7E7162;">{{ chatHint }}</div>
+      </div>
+    </div>
+
+    <!-- 11 SEARCH -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0 0; border-top: 1px solid rgba(36,28,20,0.3); margin-top: 42px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">11<br/>Search</div>
+      <div style="display: flex; flex-direction: column; gap: 20px; max-width: 520px;">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 13px 20px; border-radius: 999px; background-color: #EFECE3; border: 1px solid rgba(36,28,20,0.22);" style-focus-within="border-color: #33482F;">
+          <div style="width: 13px; height: 13px; border-radius: 50%; border: 2px solid #6A5C4C; flex: none;"></div>
+          <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Search the kit" style="flex: 1; min-width: 0; font-family: 'Newsreader', serif; font-size: 18px; color: #241C14; background: transparent; border: none; outline: none;"/>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7E7162;">{{ queryHint }}</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+            <span style="padding: 7px 16px; border-radius: 999px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: {{ r.fg }}; background-color: {{ r.bg }}; border: 1px solid {{ r.border }};">{{ r.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13 MARKDOWN -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0 0; border-top: 1px solid rgba(36,28,20,0.3); margin-top: 42px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">12<br/>Editor</div>
+      <div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(36,28,20,0.22);">
+          <div style="display: flex; gap: 6px;">
+            <sc-for list="{{ mdTabs }}" as="t" hint-placeholder-count="2">
+              <button onClick="{{ t.select }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; cursor: pointer; border: 1px solid {{ t.border }}; background-color: {{ t.bg }}; color: {{ t.fg }};">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7E7162;">{{ mdCount }}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: {{ mdCols }}; gap: 20px; margin-top: 20px; align-items: start;">
+          <sc-if value="{{ mdShowSource }}" hint-placeholder-val="{{ true }}">
+            <div style="border-radius: 18px; background-color: #E9E6DB; padding: 20px 22px;">
+              <textarea rows="16" value="{{ mdText }}" onChange="{{ onMd }}" spellcheck="false" style="width: 100%; box-sizing: border-box; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.85; color: #241C14; background: transparent; border: none; outline: none; resize: vertical; padding: 0;"></textarea>
+            </div>
+          </sc-if>
+          <sc-if value="{{ mdShowPreview }}" hint-placeholder-val="{{ true }}">
+            <div style="border-radius: 18px; background-color: #EFECE3; padding: 26px 28px; min-height: 300px;">
+              <sc-for list="{{ mdBlocks }}" as="b" hint-placeholder-count="6">
+                <div style="display: flex; gap: 10px; margin-top: {{ b.mt }};">
+                  <span style="flex: none; font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.9; color: #C9532A; width: {{ b.markerW }};">{{ b.marker }}</span>
+                  <div style="font-family: {{ b.family }}; font-size: {{ b.size }}; font-weight: 400; line-height: {{ b.lh }}; letter-spacing: {{ b.ls }}; color: {{ b.color }}; text-wrap: pretty;">{{ b.text }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 BLOG CARDS -->
+    <div style="display: grid; grid-template-columns: 130px 1fr; gap: 40px; padding: 42px 0 0; border-top: 1px solid rgba(36,28,20,0.3); margin-top: 42px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C; padding-top: 4px; line-height: 1.7;">13<br/>Writing</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+        <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+          <a href="#" style="display: flex; flex-direction: column; gap: 12px; border: none; text-decoration: none; color: inherit;">
+            <div style="aspect-ratio: 5 / 4; background-color: {{ p.swatch }}; background-image: {{ p.fill }}; background-size: cover; background-position: {{ p.pos }}; background-blend-mode: {{ p.blend }}; filter: {{ p.filter }};"></div>
+            <div style="display: flex; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: #7E7162;">
+              <span>{{ p.date }}</span>
+              <span style="color: #33482F;">{{ p.tag }}</span>
+            </div>
+            <div style="font-family: 'Chelsea Market', cursive; font-size: 21px; line-height: 1.3; color: #241C14;">{{ p.title }}</div>
+            <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3B3128; text-wrap: pretty;">{{ p.excerpt }}</p>
+            <span style="margin-top: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: #C9532A;">{{ p.read }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 40px; background-color: rgba(42,32,24,0.35);">
+      <div style="width: 100%; max-width: 440px; background-color: #EDE6D8; padding: 36px 38px 30px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A5C4C;">Sketchbook</div>
+        <div style="margin-top: 10px; font-family: 'Chelsea Market', cursive; font-size: 30px; line-height: 1.25;">Save this sketch?</div>
+        <p style="margin: 12px 0 26px; font-size: 16px; line-height: 1.6; font-weight: 400; color: #3B3128;">It goes in with the grain baked in. The lines can always be redrawn later.</p>
+        <div style="display: flex; gap: 12px;">
+          <button onClick="{{ closeModal }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 11px 22px; border-radius: 10px; cursor: pointer; border: none; color: #F6F0E4; background-color: #C9532A;">Save</button>
+          <button onClick="{{ closeModal }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 11px 22px; border-radius: 10px; cursor: pointer; background: transparent; color: #2A2018; border: 1px solid rgba(42,32,24,0.4);">Not yet</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;gouache&quot;,&quot;cobalt&quot;],&quot;default&quot;:&quot;gouache&quot;,&quot;tsType&quot;:&quot;'gouache' | 'cobalt'&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
+class Component extends DCLogic {
+  state = { clicks: 0, grain: true, whiskers: true, tab: 0, modalOpen: false, hover: null };
+
+  static GRAPH = {
+    nodes: [
+      { id: 'prompt', x: 360, y: 58, r: 19 },
+      { id: 'sampler', x: 210, y: 128, r: 17 },
+      { id: 'latent', x: 328, y: 168, r: 18 },
+      { id: 'denoise', x: 434, y: 162, r: 16 },
+      { id: 'seed', x: 528, y: 162, r: 7 },
+      { id: 'mask', x: 222, y: 196, r: 14 },
+      { id: 'vae', x: 332, y: 240, r: 15 },
+      { id: 'upscale', x: 168, y: 278, r: 16 },
+      { id: 'compose', x: 424, y: 292, r: 14 },
+      { id: 'output', x: 300, y: 326, r: 14 }
+    ],
+    edges: [[0,1],[0,2],[0,3],[1,2],[2,3],[3,4],[2,6],[5,7],[7,8],[6,9],[5,2]]
+  };
+
+  mdVals() {
+    const DEFAULT = [
+      '# Working on paper',
+      '',
+      'Two panes, one material. The source is set in mono on a',
+      'slightly darker plate; the reading side gets the serif.',
+      '',
+      '## What the parser handles',
+      '',
+      '- headings, one and two',
+      '- paragraphs and blank lines',
+      '- bullets, quotes and `inline` code',
+      '',
+      '> Keep the vocabulary small enough to remember.',
+      '',
+      '    npm i gouache-kit'
+    ].join('\n');
+    const text = this.state.md ?? DEFAULT;
+    const mode = this.state.mdMode ?? 'split';
+    const S = { mono: "'IBM Plex Mono', monospace", chelsea: "'Chelsea Market', cursive", serif: "'Newsreader', serif" };
+    const blocks = [];
+    let first = true;
+    text.split('\n').forEach(raw => {
+      const line = raw.replace(/\s+$/, '');
+      if (!line.trim()) return;
+      const mt = first ? '0px' : '14px';
+      const base = { marker: '', markerW: '0px', family: S.serif, size: '17px', lh: '1.6', ls: '0', color: '#3B3128', mt };
+      if (line.startsWith('# ')) blocks.push({ ...base, family: S.chelsea, size: '30px', lh: '1.25', color: '#241C14', text: line.slice(2), mt: first ? '0px' : '22px' });
+      else if (line.startsWith('## ')) blocks.push({ ...base, family: S.chelsea, size: '20px', lh: '1.3', color: '#241C14', text: line.slice(3), mt: first ? '0px' : '22px' });
+      else if (line.startsWith('- ')) blocks.push({ ...base, marker: '—', markerW: '14px', text: line.slice(2), mt: first ? '0px' : '6px' });
+      else if (line.startsWith('> ')) blocks.push({ ...base, marker: '', markerW: '3px', family: S.serif, size: '18px', color: '#33482F', text: line.slice(2), mt: first ? '0px' : '18px' });
+      else if (line.startsWith('    ')) blocks.push({ ...base, family: S.mono, size: '13px', lh: '1.9', ls: '0.02em', color: '#241C14', text: line.trim(), mt: first ? '0px' : '18px' });
+      else blocks.push({ ...base, text: line });
+      first = false;
+    });
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    return {
+      mdText: text,
+      onMd: e => this.setState({ md: e.target.value }),
+      mdBlocks: blocks,
+      mdCount: words + ' words · ' + text.length + ' chars',
+      mdShowSource: mode !== 'read',
+      mdShowPreview: mode !== 'write',
+      mdCols: mode === 'split' ? '1fr 1fr' : '1fr',
+      mdTabs: [['split', 'Split'], ['write', 'Source'], ['read', 'Reading']].map(([k, label]) => ({
+        label,
+        bg: mode === k ? '#33482F' : 'transparent',
+        fg: mode === k ? '#F7F5EE' : '#3B3128',
+        border: mode === k ? '#33482F' : 'rgba(36,28,20,0.22)',
+        select: () => this.setState({ mdMode: k })
+      }))
+    };
+  }
+
+  searchVals() {
+    const all = ['buttons', 'fields', 'controls', 'marks', 'plates', 'code', 'dialog', 'paper', 'nodes', 'chat', 'writing', 'search'];
+    const q = (this.state.query ?? '').trim().toLowerCase();
+    const hits = q ? all.filter(t => t.includes(q)) : all.slice(0, 6);
+    return {
+      query: this.state.query ?? '',
+      onQuery: e => this.setState({ query: e.target.value }),
+      queryHint: q ? hits.length + ' found' : '⌘K',
+      results: (hits.length ? hits : ['no matches']).map(label => ({
+        label,
+        fg: q && hits.length ? '#F7F5EE' : '#3B3128',
+        bg: q && hits.length ? '#33482F' : 'transparent',
+        border: q && hits.length ? '#33482F' : 'rgba(36,28,20,0.22)'
+      }))
+    };
+  }
+
+  postVals() {
+    return {
+      posts: [
+        { date: '12 Mar', tag: 'process', title: 'Mixing a palette on paper first', excerpt: 'Three fields and one ink, chosen with a brush before anything was typed into a stylesheet.', read: '4 min', swatch: '#4A6742', fill: "url('leaves.png')", pos: '50% 30%', blend: 'multiply', filter: 'brightness(1.42) saturate(0.92)' },
+        { date: '04 Mar', tag: 'pattern', title: 'Scans beat gradients, every time', excerpt: 'A repeating mark carries grain, pressure and mistakes. A gradient carries none of those.', read: '6 min', swatch: '#C9532A', fill: "url('spots.png')", pos: '30% 50%', blend: 'normal', filter: 'none' },
+        { date: '26 Feb', tag: 'notes', title: 'Nine elements is a whole system', excerpt: 'What a small kit gets you: consistency by scarcity, and nothing left to argue about.', read: '3 min', swatch: '#3A6A96', fill: 'none', pos: 'center', blend: 'normal', filter: 'none' }
+      ]
+    };
+  }
+
+  chatVals() {
+    const accent = '#33482F';
+    const list = this.state.msgs ?? [
+      { who: 'you', text: 'A specimen sheet for the paper kit — nine elements, one texture.' },
+      { who: 'gouache', text: 'Laid it out as numbered rows. Orange leads, pine answers, and the grain sits over everything at half strength.' }
+    ];
+    const draft = this.state.draft ?? '';
+    const submit = () => {
+      const t = draft.trim();
+      if (!t) return;
+      this.setState({
+        msgs: [...list, { who: 'you', text: t }, { who: 'gouache', text: 'Noted — mixing that on the same paper.' }],
+        draft: ''
+      });
+    };
+    return {
+      msgs: list.map(m => m.who === 'you'
+        ? { ...m, align: 'flex-end', radius: '18px 18px 6px 18px', bg: '#E4DFD2', fg: '#241C14', meta: '#6A5C4C' }
+        : { ...m, align: 'flex-start', radius: '18px 18px 18px 6px', bg: accent, fg: '#F7F5EE', meta: 'rgba(247,245,238,0.7)' }),
+      draft,
+      onDraft: e => this.setState({ draft: e.target.value }),
+      onKey: e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); } },
+      send: submit,
+      sendBg: draft.trim() ? accent : '#C6BDAC',
+      chatHint: draft.trim() ? 'enter to send · shift+enter for a new line' : 'the composer sits on the same plate as the code block'
+    };
+  }
+
+  graphVals() {
+    const G = Component.GRAPH;
+    const accent = (this.props.accent ?? 'gouache') === 'cobalt' ? '#3A6A96' : '#C9532A';
+    const h = this.state.hover;
+    const near = new Set();
+    if (h !== null) {
+      near.add(h);
+      G.edges.forEach(([a, b]) => {
+        if (a === h) near.add(b);
+        if (b === h) near.add(a);
+      });
+    }
+    const nodes = G.nodes.map((n, i) => {
+      const on = h === null || near.has(i);
+      return {
+        left: (n.x / 700 * 100).toFixed(3) + '%',
+        top: (n.y / 360 * 100).toFixed(3) + '%',
+        size: n.r * 2 + 'px',
+        offset: -n.r + 'px',
+        fill: h === i ? '#33482F' : on ? accent : '#DAD3C4',
+        ring: h === i ? '0 0 0 6px rgba(51,72,47,0.16)' : 'none',
+        enter: () => this.setState({ hover: i }),
+        leave: () => this.setState({ hover: null })
+      };
+    });
+    const edges = G.edges.map(([a, b]) => {
+      const on = h === null || a === h || b === h;
+      return {
+        x1: G.nodes[a].x, y1: G.nodes[a].y, x2: G.nodes[b].x, y2: G.nodes[b].y,
+        stroke: h !== null && on ? '#33482F' : on ? accent : 'rgba(36,28,20,0.16)',
+        width: h !== null && on ? 3 : 2
+      };
+    });
+    return {
+      nodes, edges,
+      nodeCount: G.nodes.length,
+      edgeCount: G.edges.length,
+      readout: h === null ? 'graph · idle' : G.nodes[h].id + ' · ' + (near.size - 1) + ' linked',
+      readoutColor: h === null ? '#7E7162' : '#33482F'
+    };
+  }
+
+  renderVals() {
+    const accent = (this.props.accent ?? 'gouache') === 'cobalt' ? '#3A6A96' : '#C9532A';
+    const labels = ['Elements', 'Palette', 'Paper'];
+    const sets = [
+      [
+        { meta: 'Plate 01', title: 'Painted ground', body: 'A scan of real gouache fills the plate. Brush and paper do the work; no gradient is involved.' },
+        { meta: 'Plate 02', title: 'Pattern ground', body: 'A repeating mark scan, cropped like a photograph. Same slot, different material.' },
+        { meta: 'Plate 03', title: 'Flat field', body: 'One opaque colour, nothing on top. This is the default for every element in the kit.' }
+      ],
+      [
+        { meta: 'Ink', title: 'Soot 2A2018', body: 'Warm near-black for type and rules. Never pure black.' },
+        { meta: 'Primary', title: 'Gouache C9532A', body: 'One element per view carries it. Two at most.' },
+        { meta: 'Secondary', title: 'Pine 33482F', body: 'Answers the orange in tags, plates and marks.' }
+      ],
+      [
+        { meta: 'Tile', title: 'One texture', body: 'The same file at 60px on a tag and 300px on a plate.' },
+        { meta: 'Overlay', title: 'Fixed wash', body: 'A multiply layer over the viewport keeps grain continuous on scroll.' },
+        { meta: 'Swap', title: 'Real paper', body: 'Point the file at a scan and nothing else changes.' }
+      ]
+    ];
+    const swatches = [['#33482F', '#C9532A', '#3A6A96'], ['#2A2018', '#C9532A', '#33482F'], ['#E9E6DB', '#F4F2EB', '#33482F']];
+    return {
+      ...this.graphVals(),
+      ...this.chatVals(),
+      ...this.postVals(),
+      ...this.searchVals(),
+      ...this.mdVals(),
+      clicks: this.state.clicks,
+      bump: () => this.setState(s => ({ clicks: s.clicks + 1 })),
+      switchAlign: this.state.grain ? 'flex-end' : 'flex-start',
+      switchDot: this.state.grain ? accent : '#C4B7A6',
+      toggleGrain: () => this.setState(s => ({ grain: !s.grain })),
+      checkBg: this.state.whiskers ? accent : 'transparent',
+      toggleWhiskers: () => this.setState(s => ({ whiskers: !s.whiskers })),
+      tabs: labels.map((label, i) => ({
+        label,
+        fg: this.state.tab === i ? '#2A2018' : '#A5988A',
+        rule: this.state.tab === i ? accent : 'transparent',
+        select: () => this.setState({ tab: i })
+      })),
+      cards: sets[this.state.tab].map((c, i) => ({
+        ...c,
+        swatch: this.state.tab === 0 && i === 0 ? '#4A6742' : swatches[this.state.tab][i],
+        fill: this.state.tab === 0 ? ["url('leaves.png')", "url('spots.png')", 'none'][i] : 'none',
+        blend: this.state.tab === 0 && i === 0 ? 'multiply' : 'normal',
+        filter: this.state.tab === 0 && i === 0 ? 'brightness(1.42) saturate(0.92)' : 'none',
+        pos: ['50% 30%', '20% 40%', 'center'][i]
+      })),
+      modalOpen: this.state.modalOpen,
+      openModal: () => this.setState({ modalOpen: true }),
+      closeModal: () => this.setState({ modalOpen: false })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
