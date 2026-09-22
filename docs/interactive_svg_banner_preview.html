@@ -228,7 +228,7 @@
                 <div class="controls">
                     <div class="segmented" role="group" aria-label="Banner ground">
                         <button type="button" data-theme="dark" aria-pressed="true">Stone</button>
-                        <button type="button" data-theme="light" aria-pressed="false">Linen</button>
+                        <button type="button" data-theme="light" aria-pressed="false">Paper</button>
                     </div>
                     <div class="controls__actions">
                         <button type="button" class="btn btn--quiet" id="btn-pulse-nodes">Pulse nodes</button>
@@ -257,7 +257,9 @@
     </div>
 
     <script>
-        let currentTheme = 'dark';
+        // Links from the profile README: ?theme=stone|paper and ?pulse.
+        const params = new URLSearchParams(location.search);
+        let currentTheme = params.get('theme') === 'paper' ? 'light' : 'dark';
 
         const EMBED = `<p align="center">\n  <img src="https://raw.githubusercontent.com/scoegrams/scoegrams-design/main/banner-scoegrams.svg"\n       alt="scoegrams banner" width="100%" />\n</p>`;
 
@@ -729,13 +731,15 @@
             render();
         }));
 
-        document.getElementById('btn-pulse-nodes').addEventListener('click', () => {
+        function pulse() {
             const canvas = svgHost.querySelector('.canvas');
             canvas.classList.remove('is-pulsing');
             void canvas.offsetWidth;
             canvas.classList.add('is-pulsing');
             setTimeout(() => canvas.classList.remove('is-pulsing'), 2400);
-        });
+        }
+
+        document.getElementById('btn-pulse-nodes').addEventListener('click', pulse);
 
         document.getElementById('btn-toggle-code').addEventListener('click', function () {
             const open = rawCodeView.hidden;
@@ -755,6 +759,7 @@
         });
 
         render();
+        if (params.has('pulse')) setTimeout(pulse, 400);
     </script>
 </body>
 </html>
