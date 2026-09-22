@@ -483,7 +483,7 @@
             const serif = `'Newsreader', Georgia, 'Times New Roman', serif`;
             const mono = `'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace`;
 
-            return `<svg fill="none" viewBox="0 0 800 270" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="scoegrams: Hot interfaces. Creative apps. User-friendly systems. Design flows into UI, UI into systems.">
+            return `<svg fill="none" viewBox="0 0 800 270" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="scoegrams: Hot interfaces. Creative apps. User-friendly systems. Design flows into UI, UI into systems. Contact scoegrams@gmail.com.">
   <foreignObject height="100%" width="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
       <style>
@@ -503,15 +503,25 @@
         .top {
           display: flex;
           justify-content: space-between;
+          align-items: baseline;
+          gap: 16px;
           padding-bottom: 12px;
           border-bottom: 1px solid ${c.rule};
           font-family: ${mono};
           font-size: 11px;
           letter-spacing: 0.14em;
-          text-transform: uppercase;
           color: ${c.muted};
         }
-        .top b { font-weight: 500; color: ${c.ink}; }
+        .top b { font-weight: 500; color: ${c.ink}; letter-spacing: 0.14em; }
+        .mark { color: ${c.ink}; font-weight: 500; letter-spacing: 0.16em; }
+        .mark-soft {
+          font-size: 9px;
+          font-weight: 400;
+          letter-spacing: 0.08em;
+          color: ${c.muted};
+          text-transform: none;
+        }
+        .top a { color: inherit; text-decoration: none; border: 0; }
         .chat { margin-top: 30px; width: 430px; }
         .you {
           display: inline-block;
@@ -522,16 +532,8 @@
           font-size: 13px;
           color: ${c.ink};
         }
-        .who {
-          margin: 22px 0 6px;
-          font-family: ${mono};
-          font-size: 11px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: ${c.muted};
-        }
         .say {
-          margin: 0;
+          margin: 22px 0 0;
           font-size: 27px;
           line-height: 1.25;
           letter-spacing: -0.015em;
@@ -645,13 +647,12 @@
 
       <div class="canvas">
         <div class="top">
-          <span>scoegrams / <b>design</b></span>
-          <span>Shinddo Software</span>
+          <span><span class="mark"><span class="mark-soft">ro</span>SCOE<span class="mark-soft">pro</span>GRAMS</span> / <b>design</b></span>
+          <a href="mailto:scoegrams@gmail.com">scoegrams@gmail.com</a>
         </div>
 
         <div class="chat">
           <span class="you">what do you build?</span>
-          <div class="who">shinddo</div>
           <p class="say"><em>Hot interfaces.<svg class="smoke" viewBox="0 0 60 46" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path class="wisp" pathLength="100" d="M4 46 C0 38, 10 32, 7 24 S1 12, 11 3" />
             <path class="wisp w2" pathLength="100" d="M4 46 C9 38, 1 31, 9 23 S20 15, 16 2" />
